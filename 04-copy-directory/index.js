@@ -15,14 +15,13 @@ function removeFiles() {
           if (err) throw err;
         });
       }
-    });
+    }).then(copyDir);
   } catch (err) {
     console.error(err);
   }
 }
 
 function copyDir() {
-  removeFiles();
   try {
     const files = readdir(sourcePath, {
       withFileTypes: true
@@ -39,5 +38,4 @@ function copyDir() {
     console.error(err);
   }
 }
-
-copyDir();
+removeFiles();
